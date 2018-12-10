@@ -1,0 +1,56 @@
+<!--tell Django to use base.html template as master page-->
+	{% extends 'base.html' %} 
+	
+	{% block breadcrumb %}
+		<li class="breadcrumb-item active">Boards</li>
+	{% endblock %}
+	
+	{% block content %}
+			<table class="table">
+				<thead class="thead-dark">
+					<tr><!--table row-->
+					<!--header for this row-->
+						<th>Board</th>
+						<th>Posts</th>
+						<th>Topics</th>
+						<th>Last Post</th>
+					</tr>
+				</thead>
+				<tbody><!---->
+					{% for board in boards %}
+					<tr>
+						<td><!-- //table data -->
+						<!-- Create navigation link to the topics page of given Board
+							Tag % url % compose the applications URLs,
+							first parameter 'board_topics' is the name of URL-->
+							<a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
+							<!-- <small style="color: #888">{{board.description}}</small> -->
+							<small class="text-muted d-block">{{board.description}}</small>
+						</td>
+						<td class="align-middle">0</td>
+						<td class="align-middle">0</td>
+						<td></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>	
+	{% endblock %}
+	
+
+<!--The old version-->
+<!-- % load static % loading Static App template 
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Boards</title>
+		<link rel="stylesheet" href="% static "css/bootstrap.min.css" %">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<ol class="breadcrumb my-4"> <ol> tag defines ordered list
+				<li class="breadcrumb-item active">Boards</li> <li> defines list-item
+			</ol>
+		
+		  -->
